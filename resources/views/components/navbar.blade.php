@@ -21,14 +21,35 @@
                     <a class="nav-link" href="#">Business</a>
                 </li>
             </ul>
-            <div class="d-flex">
-                <a href="{{ route('login') }}" class="btn btn-master btn-secondary me-3">
-                    Sign In
-                </a>
-                <a href="{{ route('login') }}" class="btn btn-master btn-primary">
-                    Sign Up
+            @auth
+            <div class="d-flex user-logged nav-item dropdown no-arrow">
+                <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" arial-expanded="false">
+                    Hallo, {{ Auth::user()->name }}
+                    <img src="{{ Auth::user()->avatar }}" class="user-photo rounded" alt="" style="border-radius: 50%;">
+                    <ul class="dropdown-menu" arial-labelledby="dropdownMenuLink" style="right:0; left:auto">
+                        <li>
+                            <a href="#" class="dropdown-item">My Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item" onclick="event.preventDefault();document.getElementById('logout-form').submit()">Sign Out</a>
+                            <form id="logout-form" action="{{ route("logout") }}" method="post" style="display: none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
                 </a>
             </div>
+            @endauth
+            @guest
+                <div class="d-flex">
+                    <a href="{{ route('login') }}" class="btn btn-master btn-secondary me-3">
+                        Sign In
+                    </a>
+                    <a href="{{ route('login') }}" class="btn btn-master btn-primary">
+                        Sign Up
+                    </a>
+                </div>
+            @endguest
         </div>
     </div>
 </nav>
