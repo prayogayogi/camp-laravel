@@ -25,7 +25,7 @@ Route::get('sign-to-google', [UserController::class, 'google'])->name('sign.to.g
 Route::get('auth/google/callback', [UserController::class, 'handeleProviderCallback'])->name('user.google.callback');
 
 Route::middleware(["auth"])->group(function () {
-    // Checout route
+    // Checkout route
     Route::get("/checkout/success", [CheckoutController::class, "success"])->name("success_checkout");
     Route::get("/checkout/{camp:slug}", [CheckoutController::class, "create"])->name("checkout.create");
     Route::post("/checkout/{camp}", [CheckoutController::class, "store"])->name("checkout.store");
