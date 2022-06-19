@@ -18,7 +18,6 @@
                                     <td>Price</td>
                                     <td>Register Data</td>
                                     <td>Paid Status</td>
-                                    <td>Action</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,19 +28,7 @@
                                         <td>{{ $checkout->Camp->price }}</td>
                                         <td>{{ $checkout->created_at->format("M d Y") }}</td>
                                         <td>
-                                            @if ($checkout->is_paid)
-                                                <span class="badge bg-success">Paid</span>
-                                            @else
-                                                <span class="badge bg-warning">Waiting</span>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if (!$checkout->is_paid)
-                                                <form action="{{ route("admin.checkout.update", $checkout->id) }}" method="post">
-                                                    @csrf
-                                                    <button class="btn btn-primary btn-sm">Set to Paid</button>
-                                                </form>
-                                            @endif
+                                            <strong>{{ $checkout->payment_status }}</strong>
                                         </td>
                                     </tr>
                                 @empty
