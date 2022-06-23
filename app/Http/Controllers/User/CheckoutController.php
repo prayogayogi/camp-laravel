@@ -230,23 +230,23 @@ class CheckoutController extends Controller
             }
         } else if ($transaction_status == 'cancel') {
             if ($fraud == 'challenge') {
-                /* TODO Set payment status in merchant's database to 'failure'*/
+                /*TODO Set payment status in merchant's database to 'failure'*/
                 $checkout->payment_status = "failed";
             } else if ($fraud == 'accept') {
-                /* TODO Set payment status in merchant's database to 'failure'*/
+                /*TODO Set payment status in merchant's database to 'failure'*/
                 $checkout->payment_status = "failed";
             }
         } else if ($transaction_status == 'deny') {
-            /* TODO Set payment status in merchant's database to 'failure'*/
+            /*TODO Set payment status in merchant's database to 'failure'*/
             $checkout->payment_status = "failed";
         } else if ($transaction_status == 'settlement') {
-            /* TODO set payment status in merchant's database to 'Settlement'*/
+            /*TODO set payment status in merchant's database to 'Settlement'*/
             $checkout->payment_status = "paid";
         } else if ($transaction_status == 'pending') {
-            /* TODO set payment status in merchant's database to 'Pending'*/
+            /*TODO set payment status in merchant's database to 'Pending'*/
             $checkout->payment_status = "pending";
         } else if ($transaction_status == 'expire') {
-            /* TODO set payment status in merchant's database to 'expire'*/
+            /*TODO set payment status in merchant's database to 'expire'*/
             $checkout->payment_status = "failed";
         }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DiscountController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\Admin\CheckoutController as AdminCheckout;
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
 
 // Socialite route
 Route::get('sign-to-google', [UserController::class, 'google'])->name('sign.to.google');
@@ -48,11 +50,14 @@ Route::middleware(["auth"])->group(function () {
     });
 
     // Admin dashboard
-    Route::prefix("admin/dashboard")->namespace("Admin")->name("admin.")->middleware("ensureUserRole:admin")->group(function () {
+    Route::prefix("admin/dashboard")->name("admin.")->middleware("ensureUserRole:admin")->group(function () {
         Route::get("/", [AdminDashboard::class, "index"])->name("dashboard");
 
         // Admin checkout
         Route::post("/checkout/{checkout}", [AdminCheckout::class, "update"])->name("checkout.update");
+
+        // Admin Discount
+        Route::resource("discount", DiscountController::class);
     });
 });
 
