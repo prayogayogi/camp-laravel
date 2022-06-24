@@ -65,6 +65,13 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div class="mb-4">
+                                <label class="form-label">Discound Code</label>
+                                <input name="discount" type="text" class="form-control @error('discount') is-invalid @enderror" value="{{ old("discount") }}"/>
+                                @error('discount')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                             <button type="submit" class="w-100 btn btn-primary">Pay Now</button>
                             <p class="text-center subheader mt-4">
                                 <img src="{{ asset('images/ic_secure.svg') }}" alt=""> Your payment is secure and encrypted.
