@@ -172,7 +172,15 @@ class CheckoutController extends Controller
 
         // Item discount
         $discountPrice = 0;
-
+        if ($checkout->Discount) {
+            $discountPrice = $price * $checkout->discount_percentage / 100;
+            $item_details[] = [
+                "id" => $checkout->Discount->code,
+                "price" => -$discountPrice,
+                "quantity" => 1,
+                "name" => "Discount {$checkout->Discount->name} ({$checkout->discount_percentage}%)"
+            ];
+        }
 
         $total = $price - $discountPrice;
         $transaction_details = [
